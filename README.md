@@ -1,4 +1,4 @@
-# SAS Advanced Filtering
+![Banner](/images/banner.png)
 
 ## Introdução
 
@@ -9,9 +9,9 @@ Vamos disponibilizar diversos tutoriais estilo **DIY (faça você mesmo)**, perm
 
 Cada exemplo de filtro será descrito em formato passo-a-passo, com capturas de tela e/ou arquivos de apoio quando necessário.
 
-| Título | Descrição |
-| - | - |
-| [Filtrando termos em colunas diferentes](/examples/filtering-single-term-multiple-columns.md) | Use caixa de texto para filtrar mais de um termo em colunas diferentes em uma mesma tabela |
+| Título | Descrição | Autor |
+| - | - | - |
+| [Filtrando termos em colunas diferentes](/examples/filtering-single-term-multiple-columns.md) | Use caixa de texto para filtrar mais de um termo em colunas diferentes em uma mesma tabela | [Arthur Diego Pereira](https://github.com/artYYDP) |
 <!--
 | [Parâmetro Dinâmico](#) | Uso de parâmetro com seleção de múltiplos itens | Using a parameter with multi-select |
 | [Filtro com Condição Customizada](#) | Aplicação de lógica condicional nos filtros | Applying conditional logic to filters |
