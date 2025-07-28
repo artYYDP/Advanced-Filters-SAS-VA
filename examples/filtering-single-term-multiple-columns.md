@@ -1,60 +1,60 @@
-# 🔍 Filtrando termos em colunas diferentes
+# 🔍 Filtering terms in different columns
 
-## 🧠 Objetivo
+## 🧠 Objective
 
-Permitir que o usuário digite um termo livremente (ex: "Maria" ou "12345") e que esse termo seja buscado em **mais de uma coluna** da mesma tabela — por exemplo: `Nome` **ou** `CPF`.
+Allow the user to freely enter a term (e.g., "Maria" or "12345") and have that term searched in **more than one column** of the same table — for example: `Name` **or** `CPF`.
 
-## 🧩 Exemplo prático
+## 🧩 Practical example
 
-Imagine uma tabela com os nomes das UF's (Unidades Federativas) e municípios, onde queremos que o mesmo filtro de texto procure, tanto pelo nome da UF, quanto pelo nome do município no mesmo filtro.
+Imagine a table with the names of the Brazilian states (UFs) and municipalities, where we want the same text filter to search both the state name and the municipality name.
 
-Para esse exemplo prático, usaremos uma tabela de municípios do IBGE. Essa tabela contém os seguintes dados:
+For this practical example, we'll use an IBGE municipalities table. This table contains the following data:
 
-| Coluna | Descrição | Tipo |
+| Column | Description | Type |
 | - | - | - |
-| CD_UF | Código da UF | Numeric |
-| DS_UF | Descrição da UF | Character |
-| CD_MUN | Código da UF | Numeric |
-| DS_MUN | Descrição da UF | Character |
+| CD_UF | State code | Numeric |
+| DS_UF | State description | Character |
+| CD_MUN | Municipality code | Numeric |
+| DS_MUN | Municipality description | Character |
 
-Clique [aqui](/files/MUNICIPIOS.csv) e baixe o CSV e suba o arquivo no seu ambiente SAS Viya. Depois, utilize o código abaixo para colocar a tabela em memória na CASLIB `PUBLIC`:
+Click [Download MUNICIPIOS.csv](/files/MUNICIPIOS.csv) to get the CSV and upload the file to your SAS Viya environment. Then, use the code below to load the table into memory in the `PUBLIC` CASLIB:
 
 ```sas
-/* Definir o caminho do arquivo CSV */
-%let filepath = [local_do_arquivo]/MUNICIPIOS.csv;
+/* Define the CSV file path */
+%let filepath = [file_location]/MUNICIPIOS.csv;
 
-/* Importar o arquivo CSV */
-proc import datafile="&filepath." out=PUBPLIC.MUNICIPIOS dbms=csv replace;
-	delimiter=';';
-	getnames=yes;
-  guessingrows=32767;
+/* Import the CSV file */
+proc import datafile="&filepath." out=PUBLIC.MUNICIPIOS dbms=csv replace;
+    delimiter=';';
+    getnames=yes;
+    guessingrows=32767;
 run;
 
-/* Promover a tabela para a CASLIB Public */
+/* Promote the table to the Public CASLIB */
 proc casutil;
-	promote incaslib="PUBLIC" casdata="MUNICIPIOS" outcaslib="Public";
+    promote incaslib="PUBLIC" casdata="MUNICIPIOS" outcaslib="Public";
 quit;
 ```
 
-Agora com a nossa tabela em memória, podemos ir para o SAS Visual Analytics (VA) e criarmos a nossa pesquisa.
+Now with our table in memory, we can go to SAS Visual Analytics (VA) and create our search.
 
-Na tela inicial do SAS VA, vamos criar um novo relatório e atrelar a fonte de dados que colocamos em memória.
+On the SAS VA home screen, let's create a new report and link the data source that we loaded into memory.
 
 ![01](/images/FilterColunms/01.png)
 
 ![02](/images/FilterColunms/02.png)
 
-Clique no ícone de Objetos (segundo ícone do lado esquerdo, de cima para baixo) e procure por `texto` nos filtros. Selecione e arraste para a área do SAS a **Entrada de texto**:
+Click on the Objects icon (the second icon on the left, from top to bottom) and search for `text` in the filters. Select and drag the **Text Entry** to the SAS area:
 
 ![03](/images/FilterColunms/03.png)
 
 ![04](/images/FilterColunms/04.png)
 
-Em seguida, volte à mesma tela e selecione a **Tabela de listas**, arrastando-a para o painel:
+Then, go back to the same screen and select the **List Table**, dragging it to the panel:
 
 ![05](/images/FilterColunms/05.png)
 
-Clique em **Atribuir dados** na tabela e configure conforme mostrado abaixo:
+Click on **Assign data** in the table and configure as shown below:
 
 ![06](/images/FilterColunms/06.png)
 
@@ -62,29 +62,29 @@ Clique em **Atribuir dados** na tabela e configure conforme mostrado abaixo:
 
 ![08](/images/FilterColunms/08.png)
 
-Agora, vamos adicionar um parâmetro para permitir a busca através dele. Para isso, vá em **Dados > Novo item de dados > Parâmetro**:
+Now, let's add a parameter to allow the search through it. To do this, go to **Data > New data item > Parameter**:
 
 ![09](/images/FilterColunms/09.png)
 
-Nomeie o parâmetro e defina como `Caractere`, deixando o valor atual vazio:
+Name the parameter and set it as `Character`, leaving the current value empty:
 
 ![10](/images/FilterColunms/10.png)
 
 ![11](/images/FilterColunms/11.png)
 
-Em seguida, no campo **Atribuir dados** da caixa de texto, atribua o parâmetro criado:
+Then, in the **Assign data** field of the text box, assign the created parameter:
 
 ![12](/images/FilterColunms/12.png)
 
 ![13](/images/FilterColunms/13.png)
 
-Na sequência, selecione a tabela, clique no ícone de filtro no canto direito da tela e escolha **Novo filtro**, selecionando a opção **Filtro avançado**:
+Next, select the table, click on the filter icon in the upper right corner of the screen, and choose **New filter**, selecting the **Advanced filter** option:
 
 ![15](/images/FilterColunms/15.png)
 
-Nessa parte da **Expressão do filtro**, é onde a mágica acontece para que tudo funcione corretamente. Vou explicar cada detalhe separadamente para garantir que você entenda completamente o que estamos fazendo aqui.
+In this part of the **Filter expression**, this is where the magic happens for everything to work correctly. I will explain each detail separately to ensure that you fully understand what we are doing here.
 
-A expressão de filtro exige uma condição, e é exatamente isso que vamos aplicar. A condição que vamos usar é a seguinte:
+The filter expression requires a condition, and that's exactly what we're going to apply. The condition we'll use is as follows:
 
 ```plaintext
 OR [
@@ -96,26 +96,26 @@ OR [
 ]
 ```
 
-- FiltroGeral: é o parâmetro que você criou para ser utilizado na pesquisa;
-- OR: representa a condição "OU", ou seja, a expressão será verdadeira se qualquer uma das condições for atendida;
-- Missing: faz com que a condição retorne vazio quando nenhum valor for informado, permitindo que todos os registros apareçam na tabela;
-- LowerCase: converte o texto para minúsculas, garantindo que a pesquisa não faça distinção entre letras maiúsculas e minúsculas. O mesmo efeito pode ser alcançado com UpperCase;
-- Contains: verifica se o campo contém o texto especificado, sendo útil para buscas parciais.
+- FiltroGeral: is the parameter you created to be used in the search;
+- OR: represents the "OR" condition, i.e., the expression will be true if any of the conditions are met;
+- Missing: makes the condition return empty when no value is provided, allowing all records to appear in the table;
+- LowerCase: converts the text to lowercase, ensuring that the search is case-insensitive. The same effect can be achieved with UpperCase;
+- Contains: checks if the field contains the specified text, useful for partial searches.
 
-Aplique a condição exatamente como mostrado na imagem abaixo:
+Apply the condition exactly as shown in the image below:
 
 ![16](/images/FilterColunms/16.png)
 
-Depois, clique em OK e teste a sua nova barra de pesquisa:
+Then, click OK and test your new search bar:
 
 ![17](/images/FilterColunms/17.png)
 
-Se desejar, você pode expandir a busca para mais colunas. Para isso, basta adicionar mais condições OR e seguir a mesma estrutura da condição anterior.
+If you wish, you can expand the search to more columns. To do this, just add more OR conditions and follow the same structure as the previous condition.
 
-## Agradecimentos
+## Acknowledgments
 
-- [Geiziane Oliveira](https://www.linkedin.com/in/geiziane-oliveira-0a5882110/) - Mentora SAS, cuja orientação foi fundamental para a construção desse parâmetro.
+- [Geiziane Oliveira](https://www.linkedin.com/in/geiziane-oliveira-0a5882110/) - SAS Mentor, whose guidance was essential for the construction of this parameter.
 
-## Referências
+## References
 
 - [Text Input linked to multiple categories in SAS VA](https://communities.sas.com/t5/SAS-Visual-Analytics/Text-Input-linked-to-multiple-categories-in-SAS-VA/m-p/784471#M15682)
