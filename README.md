@@ -1,26 +1,26 @@
 ![Banner](/images/banner2.png)
 
-## Introdução
+## Introduction
 
-Este repositório trata exclusivamente de **filtros avançados no SAS Visual Analytics 3.5**.
-Vamos disponibilizar diversos tutoriais estilo **DIY (faça você mesmo)**, permitindo que cada pessoa vá direto ao ponto do que precisa aplicar em seus dashboards.
+This repository is exclusively about **advanced filters in SAS Visual Analytics 3.5**.
+We provide various **DIY-style tutorials**, allowing each person to go straight to the point of what they need to apply in their dashboards.
 
-## 📚 Conteúdo
+## 📚 Content
 
-Cada exemplo de filtro será descrito em formato passo-a-passo, com capturas de tela e/ou arquivos de apoio quando necessário.
+Each filter example will be described step-by-step, with screenshots and/or supporting files when necessary.
 
-| Título | Descrição | Autor |
+| Title | Description | Author |
 | - | - | - |
-| [Filtrando termos em colunas diferentes](/examples/filtering-single-term-multiple-columns.md) | Use caixa de texto para filtrar mais de um termo em colunas diferentes em uma mesma tabela | [Arthur Diego Pereira](https://github.com/artYYDP) |
+| [Filtering terms in different columns](/examples/filtering-single-term-multiple-columns.md) | Use a text box to filter more than one term in different columns in the same table | [Arthur Diego Pereira](https://github.com/artYYDP) |
 <!--
-| [Parâmetro Dinâmico](#) | Uso de parâmetro com seleção de múltiplos itens | Using a parameter with multi-select |
-| [Filtro com Condição Customizada](#) | Aplicação de lógica condicional nos filtros | Applying conditional logic to filters |
-| [Filtro de Data Relativa](#)  | Filtros baseados em datas relativas | Filters based on relative date ranges |
-| [Interação com Contêineres](#)| Filtragem em contêineres de visualizações | Filtering across visualization containers |
+| [Dynamic Parameter](#) | Using a parameter with multi-select | Uso de parâmetro com seleção de múltiplos itens |
+| [Custom Condition Filter](#) | Applying conditional logic to filters | Aplicação de lógica condicional nos filtros |
+| [Relative Date Filter](#)  | Filters based on relative date ranges | Filtros baseados em datas relativas |
+| [Interaction with Containers](#)| Filtering across visualization containers | Filtragem em contêineres de visualizações |
 -->
 
-> 🔧 Em construção — novos exemplos serão adicionados com frequência.
+> 🔧 Under construction — new examples will be added frequently.
 
-## 📥 Como contribuir
+## 📥 How to contribute
 
-Se você também utiliza o SAS VA 3.5 e quer compartilhar alguma solução de filtro avançado, fique à vontade para abrir uma issue ou pull request!
+If you also use SAS VA 3.5 and want to share an advanced filter solution, feel free to open an issue or pull request!
