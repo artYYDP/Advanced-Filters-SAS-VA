@@ -1,4 +1,4 @@
-![Banner](/images/banner2.png)
+![Banner](https://www.dropbox.com/scl/fi/zvazublq2l1dankqokiub/banner2.png?rlkey=hq70ksjixineiw9m5or9zq245&st=q5z29hw2&raw=1)
 
 ## Introduction
 
