@@ -3,7 +3,7 @@
 ## Available Languages
 
 - 🇺🇸 English (`en-US`)
-- 🇧🇷 [Português (`pt-BR`)](/languages/pt-BR/README.md)
+- 🇧🇷 [Português (`pt-BR`)](/languages/pt-BR/?tab=readme)
 
 ## Introduction
 

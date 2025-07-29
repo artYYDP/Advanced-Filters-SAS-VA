@@ -2,7 +2,7 @@
 
 ## Idiomas Disponíveis
 
-- 🇺🇸 [English (`en-US`)](/README.md)
+- 🇺🇸 [English (`en-US`)](/?tab=readme)
 - 🇧🇷 Português (`pt-BR`)
 
 ## Introdução
